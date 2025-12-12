@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>KRISPYANCHOVIES2</title>
+
+    <style>
+        body { font-family: Arial, sans-serif; }
+        header { font-weight: bold; }   
+    </style>
+
+    <div class="container"> 
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"> 
+            <div class="col-md-3 mb-2 mb-md-0"> 
+                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none"> 
+                    <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg> 
+                </a> 
+            </div> 
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"> 
+                <li><a href="landing.html" class="nav-link px-2">Home</a></li> 
+                <li><a href="" class="nav-link px-2 link-secondary">Redeem</a></li> 
+                <li><a href="leaderboard.html" class="nav-link px-2">Leaderboard</a></li> 
+            </ul> 
+            <div class="col-md-3 text-end"> 
+                <a href="login.html" class="btn btn-outline-primary me-2">Log In</a>
+
+                <a href="signup.html" class="btn btn-outline-primary me-2">Sign-up</a>
+            </div> 
+            <div class="dropdown text-end"> 
+                <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> </a> 
+                <ul class="dropdown-menu text-small"> 
+                    <li><a class="dropdown-item" href="#">New project...</a></li> 
+                    <li><a class="dropdown-item" href="#">Settings</a></li> 
+                    <li><a class="dropdown-item" href="#">Profile</a></li> 
+                    <li><hr class="dropdown-divider"></li> 
+                    <li><a class="dropdown-item" href="#">Sign out</a></li> 
+                </ul> 
+            </div>
+        </header> 
+    </div>
+
+</head>
+<body>
+
+    <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalTour"> 
+        <div class="modal-dialog"> 
+            <div class="modal-content rounded-4 shadow"> 
+                <div class="modal-body p-5"> 
+                    <h3 class="fw-bold mb-0">My Points</h3> 
+                    <ul class="d-grid gap-4 my-5 list-unstyled small"> 
+                        <li class="d-flex gap-4"> 
+                            <svg class="bi text-body-secondary flex-shrink-0" width="48" height="48" aria-hidden="true"><use xlink:href="#grid-fill"></use></svg> 
+                            <div> 
+                                <h1 class="fw-bold mb-0">30 Points</h1>
+                            </div> 
+                        </li> 
+                    </ul>
+                </div> 
+            </div>  
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center"> 
+        <div class="col"> 
+            <div class="card mb-4 rounded-3 shadow-sm"> 
+                <div class="card-header py-3"> <h4 class="my-0 fw-normal">Crab</h4> </div> 
+                    <div class="card-body"> <h1 class="card-title pricing-card-title">25 Points</h1> 
+
+                        <img src="DDAxITD images/Ocean/Crab.png" alt="OCEAN KeyChain" style="width:200px;height:150px;">
+                        <ul class="list-unstyled mt-3 mb-4"> 
+                            <li><h4 class="fw-bold mb-0">OCEAN</h4></li> 
+                            <li>Plush Toy</li> 
+                            <li> 10 x 10 cm</li>
+                            <li>25 Left in stock</li> 
+                        </ul> 
+                        <button type="button" class="w-100 btn btn-outline-primary me-2">Redeem</button> 
+                    </div> 
+                </div> 
+            </div> 
+            
+            <div class="col"> 
+                <div class="card mb-4 rounded-3 shadow-sm"> 
+                    <div class="card-header py-3"> <h4 class="my-0 fw-normal">Penguin</h4> 
+                    </div> 
+                    <div class="card-body"> <h1 class="card-title pricing-card-title">42 Points</h1> 
+                        <img src="DDAxITD images/Artic/Penguin_Front.png" alt="ANTARTICA KeyChain" style="width:200px;height:150px;">
+                        <ul class="list-unstyled mt-3 mb-4"> 
+                            <li><h4 class="fw-bold mb-0">ANTARTICA</h4></li> 
+                            <li>KeyChain</li> 
+                            <li> 15 x 15 cm</li>
+                            <li>33 Left in stock</li> 
+                        </ul> 
+                        <button type="button" class="w-100 btn btn-outline-primary me-2">Redeem</button> 
+                    </div> 
+                </div> 
+            </div> 
+            <div class="col"> <div class="card mb-4 rounded-3 "> 
+                <div class="card-header py-3 "> <h4 class="my-0 fw-normal">Crocodile</h4> 
+                </div> 
+                <div class="card-body"> <h1 class="card-title pricing-card-title">70 Points</h1> 
+                    <ul class="list-unstyled mt-3 mb-4"> 
+                        <img src="DDAxITD images/Mangroove/Crocodile.png" alt="MANGROOVE Plush Toy" style="width:200px;height:160px;">
+                        <li><h4 class="fw-bold mb-0">MANGROOVE</h4></li> 
+                        <li>Plush Toy</li> 
+                        <li> 25 x 60 cm</li>
+                        <li>12 Left in stock</li> 
+                    </ul> 
+                    <button type="button" class="w-100 btn btn-outline-primary me-2">Redeem</button> 
+                </div> 
+            </div> 
+        </div> 
+    </div>
+</body>
+</html>
