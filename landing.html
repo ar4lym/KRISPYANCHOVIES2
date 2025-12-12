@@ -1,100 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Landing Page</title>
-    
-    <style>
-    body { font-family: Arial, sans-serif; }
-    header { font-weight: bold; }
-    
-   </style>
-
-    <div class="container"> 
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"> 
-            <div class="col-md-3 mb-2 mb-md-0"> 
-                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none"> 
-                    <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg> 
-                </a> 
-            </div> 
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"> 
-                <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li> 
-                <li><a href="KRISPYANCHOVIES2.html" class="nav-link px-2">Redeem</a></li> 
-                <li><a href="leaderboard.html" class="nav-link px-2">Leaderboard</a></li> 
-            </ul> 
-            <div class="col-md-3 text-end"> 
-                <button type="button" class="btn btn-outline-primary me-2">Login</button> 
-                <button type="button" class="btn btn-outline-primary me-2">Sign-up</button> 
-            </div>
-            <div class="dropdown text-end"> 
-                <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> </a> 
-                <ul class="dropdown-menu text-small"> 
-                    <li><a class="dropdown-item" href="#">New project...</a></li> 
-                    <li><a class="dropdown-item" href="#">Settings</a></li> 
-                    <li><a class="dropdown-item" href="#">Profile</a></li> 
-                    <li><hr class="dropdown-divider"></li> 
-                    <li><a class="dropdown-item" href="#">Sign out</a></li> 
-                </ul> 
-            </div>
-        </header> 
-    </div>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ocean Conservation • Landing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
-    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary"> 
-        <div class="col-lg-6 px-0"> 
-            <h1 class="display-3 fst-italic">S.E.A Creatures and it's habitats</h1> 
-            <h3 class="display-6 fst-italic">What can we do to help them?</h3> 
-            <p class="lead my-3">Clearing the trash to restore their habitat</p> 
-        </div> 
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark ocean-nav shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">🌊 Ocean Rescue</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="navMenu" class="collapse navbar-collapse">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="landing.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="landing.html">Redeem</a></li>
+                    <li class="nav-item"><a class="nav-link" href="leaderboard.html">Leaderboard</a></li>
+                </ul>
+
+                <div class="d-flex">
+                    <a href="login.html" class="btn btn-outline-light me-2">Log In</a>
+                    <a href="signup.html" class="btn btn-light">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- HERO (BIG OCEAN BANNER) -->
+    <header class="landing-hero text-white d-flex align-items-center">
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold">Protect SEA Creatures</h1>
+            <p class="lead mt-3">Join the movement to clean our oceans and restore marine habitats.</p>
+            <a href="signup.html" class="btn btn-lg btn-light mt-3 fw-semibold">Start Helping</a>
+        </div>
+    </header>
+
+
+    <!-- SECTION: 2 Featured Cards (Articles) -->
+    <div class="container my-5">
+        <h2 class="text-center mb-4 fw-bold text-primary">Latest Environmental News</h2>
+
+        <div class="row g-4">
+
+            <!-- Arctic Card -->
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <img src="images/Artic/Penguin_Front.png" class="card-img-top"
+                        style="height:260px; object-fit:cover;">
+                    <div class="card-body">
+                        <span class="badge bg-primary">ARCTIC</span>
+                        <h3 class="mt-2">Plastic Pollution Hits Polar Bears</h3>
+                        <p class="text-muted">Polar bears struggle in a plastic-filled Arctic environment.</p>
+                        <a href="https://www.greenpeace.org/aotearoa/story/polar-bears-exposed-to-plastic-pollution-in-their-arctic-home/"
+                            target="_blank" class="btn btn-outline-primary">
+                            Read Article →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ocean Card -->
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <img src="images/Ocean/Crab.png" class="card-img-top" style="height:260px; object-fit:cover;">
+                    <div class="card-body">
+                        <span class="badge bg-success">OCEAN</span>
+                        <h3 class="mt-2">5.25 Trillion Pieces of Trash</h3>
+                        <p class="text-muted">Our oceans are drowning in waste—how long until it's too late?</p>
+                        <a href="https://education.nationalgeographic.org/resource/ocean-trash-525-trillion-pieces-and-counting-big-questions-remain/"
+                            target="_blank" class="btn btn-outline-primary">
+                            Read Article →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <div class="row mb-2"> 
-        <div class="col-md-6"> 
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"> 
-                <div class="col p-4 d-flex flex-column position-static"> 
-                    <strong class="d-inline-block mb-2 text-primary-emphasis">ARCTIC</strong> 
-                    <h3 class="mb-0">Featured post</h3> 
-                    <div class="mb-1 text-body-secondary">January 28</div> 
-                    <p class="card-text mb-auto">Polar bears exposed to plastic pollution in their Arctic home.</p> 
-                    <a href="https://www.greenpeace.org/aotearoa/story/polar-bears-exposed-to-plastic-pollution-in-their-arctic-home/" class="icon-link gap-1 icon-link-hover stretched-link">    
-                    <svg class="bi" aria-hidden="true">
-                        <use xlink:href="#chevron-right"></use>
-                    </svg>
-                    Read more here...
-                    </a> 
-                </div> 
-                <div class="col-auto d-none d-lg-block"> 
-                    <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img " height="250" preserveAspectRatio="xMidYMid slice" role="img" width="200" xmlns="http://www.w3.org/2000/svg">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c"></rect>
-                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                    </svg> 
-                </div> 
-            </div> 
-        </div> 
-        <div class="col-md-6"> 
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"> 
-                <div class="col p-4 d-flex flex-column position-static"> 
-                    <strong class="d-inline-block mb-2 text-success-emphasis">OCEAN</strong> 
-                    <h3 class="mb-0">Featured Post</h3> 
-                    <div class="mb-1 text-body-secondary">October 1</div> 
-                    <p class="mb-auto">Ocean Trash: 5.25 Trillion Pieces and Counting.</p> 
-                    <a href="https://education.nationalgeographic.org/resource/ocean-trash-525-trillion-pieces-and-counting-big-questions-remain/" class="icon-link gap-1 icon-link-hover stretched-link">
-                        <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg> 
-                        Read more here...
-                    </a> 
-                </div> 
-                <div class="col-auto d-none d-lg-block"> 
-                    <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img " height="250" preserveAspectRatio="xMidYMid slice" role="img" width="200" xmlns="http://www.w3.org/2000/svg">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                    </svg> 
-                </div> 
-            </div> 
-        </div> 
-    </div>
+    <!-- Footer -->
+    <footer class="bg-primary text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-1">© 2025 Krispy Anchovies. All rights reserved.</p>
+            <small>Follow us on
+                <a href="#" class="text-white text-decoration-none">Instagram</a> |
+                <a href="#" class="text-white text-decoration-none">Facebook</a>
+            </small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
