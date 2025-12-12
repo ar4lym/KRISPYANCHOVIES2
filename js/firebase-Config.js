@@ -1,7 +1,7 @@
 // Import Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
 
 // Firebase config
 export const firebaseConfig = {
@@ -17,10 +17,13 @@ export const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getDatabase(app);
+export const auth = getAuth(app);
+export const db = getDatabase(app);
 
-// Sign Up
+// ======================================================
+// SIGN UP
+// ======================================================
+
 const habitatAnimals = {
   "Ocean": ["Jellyfish", "Sunfish"],
   "Arctic": ["Penguin", "Polarbear"],
@@ -28,87 +31,120 @@ const habitatAnimals = {
   "Coral Reef": ["Clownfish", "Mantaray"]
 };
 
-// Sign Up
-document.getElementById("signupForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
+// LOGIN FORM
+const loginForm = document.getElementById("loginForm");
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const username = document.getElementById("signupUsername").value;
-  const email = document.getElementById("signupEmail").value;
-  const password = document.getElementById("signupPassword").value;
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
 
-  try {
-    // Create user in Firebase Auth
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const uid = userCredential.user.uid;
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const uid = userCredential.user.uid;
 
-    console.log("User signed up successfully:", uid);
+      const snapshot = await get(ref(db, "players/" + uid));
 
-    // Create player data
-    const playerData = {
-      username: username,
-      email: email,
-      password: password,
-      habitats: {}
-    };
+      if (snapshot.exists()) {
+        const playerData = snapshot.val();
 
-    // Add habitats → animals → stats
-    for (const habitat in habitatAnimals) {
-      playerData.habitats[habitat] = {};
-      habitatAnimals[habitat].forEach(animal => {
-        playerData.habitats[habitat][animal] = {
-          timeTaken: 0,
-          pointsEarned: 0
-        };
-      });
+        localStorage.setItem("playerData", JSON.stringify(playerData));
+        localStorage.setItem("uid", uid);
+
+        window.location.href = "index.html";
+      } else {
+        alert("No player data found.");
+      }
+
+    } catch (error) {
+      alert("Login error: " + error.message);
+      console.error(error);
+    }
+  });
+}
+
+// SIGNUP FORM
+const signupForm = document.getElementById("signupForm");
+if (signupForm) {
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById("signupUsername").value;
+    const email = document.getElementById("signupEmail").value;
+    const password = document.getElementById("signupPassword").value;
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const uid = userCredential.user.uid;
+
+      const playerData = {
+        username,
+        email,
+        password,
+        habitats: {}
+      };
+
+      for (const habitat in habitatAnimals) {
+        playerData.habitats[habitat] = {};
+        habitatAnimals[habitat].forEach(animal => {
+          playerData.habitats[habitat][animal] = {
+            timeTaken: 0,
+            pointsEarned: 0
+          };
+        });
+      }
+
+      await set(ref(db, `players/${uid}`), playerData);
+      window.location.href = "index.html";
+
+    } catch (error) {
+      alert("Sign up error: " + error.message);
+      console.error(error);
+    }
+  });
+}
+
+// ======================================================
+// 🔥 LEADERBOARD RETRIEVAL LOGIC
+// ======================================================
+export async function getTop5ByHabitat(habitatName) {
+  const playersRef = ref(db, "players");
+  const snapshot = await get(playersRef);
+
+  if (!snapshot.exists()) return [];
+
+  const players = snapshot.val();
+  let results = [];
+
+  for (let uid in players) {
+    const player = players[uid];
+
+    if (!player.habitats || !player.habitats[habitatName]) continue;
+
+    let bestTime = Infinity;
+    let bestAnimal = null;
+
+    // Check each animal under the habitat
+    for (let animal in player.habitats[habitatName]) {
+      const time = player.habitats[habitatName][animal].timeTaken;
+
+      if (time > 0 && time < bestTime) {
+        bestTime = time;
+        bestAnimal = animal;
+      }
     }
 
-    // Save to Firebase Realtime Database
-    await set(ref(db, `players/${uid}`), playerData);
-
-    console.log("Player data saved successfully!");
-    window.location.href = "index.html";
-  } catch (error) {
-    console.error("Error signing up:", error);
-    alert("Sign up failed: " + error.message);
-  }
-});
-
-
-$(document).ready(function () {
-
-  var leaderboardData = [
-    { rank: 1, name: "John Doe", score: 100 },
-    { rank: 2, name: "Jane Smith", score: 90 },
-    { rank: 3, name: "Mike Johnson", score: 80 },
-    { rank: 4, name: "Sarah Williams", score: 70 },
-    { rank: 5, name: "David Brown", score: 60 }
-  ];
-
-  function updateLeaderboard() {
-    var table = $("#leaderboardTableBody");
-    table.empty();
-
-    leaderboardData.forEach(player => {
-      table.append(`
-            <tr>
-              <td>${player.rank}</td>
-              <td>${player.name}</td>
-              <td>${player.score}</td>
-            </tr>
-          `);
-    });
+    if (bestTime !== Infinity) {
+      results.push({
+        username: player.username,
+        timeTaken: bestTime,
+        animal: bestAnimal
+      });
+    }
   }
 
-  updateLeaderboard();
+  results.sort((a, b) => a.timeTaken - b.timeTaken);
 
-  setInterval(() => {
-    leaderboardData.forEach(p => p.score += Math.floor(Math.random() * 10) + 1);
-
-    leaderboardData.sort((a, b) => b.score - a.score);
-
-    leaderboardData.forEach((p, i) => p.rank = i + 1);
-
-    updateLeaderboard();
-  }, 5000);
-
-});
+  return results.slice(0, 5);
+}

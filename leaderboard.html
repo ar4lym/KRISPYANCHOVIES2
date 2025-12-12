@@ -15,10 +15,13 @@
 
 <body class="bg-light">
 
-  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark ocean-nav shadow-sm">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html">🌊 Ocean Rescue</a>
+      <a class="navbar-brand fw-bold" href="index.html">
+        <img src="images/logo.png" alt="Krispy Anchovies Logo" width="75" height="75" class="me-2">
+        Krispy Anchovies
+      </a>
+
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
@@ -26,9 +29,9 @@
 
       <div id="navMenu" class="collapse navbar-collapse">
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item"><a class="nav-link active" href="landing.html">About Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="landing.html">Redeem</a></li>
-          <li class="nav-item"><a class="nav-link" href="leaderboard.html">Leaderboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="redeem.html">Redeem</a></li>
+          <li class="nav-item"><a class="nav-link active" href="leaderboard.html">Leaderboard</a></li>
         </ul>
 
         <div class="d-flex">
@@ -44,6 +47,16 @@
     <h1 class="fw-bold">🌊 Live Habitat Cleanup Leaderboard</h1>
     <p class="lead">See who has contributed the most to restoring marine habitats!</p>
   </header>
+
+  <!-- HABITAT FILTER BUTTONS -->
+  <div class="text-center mb-4">
+    <button class="btn btn-ocean me-2 filter-btn" data-habitat="all">All</button>
+    <button class="btn btn-ocean me-2 filter-btn" data-habitat="Ocean">Ocean</button>
+    <button class="btn btn-ocean me-2 filter-btn" data-habitat="Arctic">Arctic</button>
+    <button class="btn btn-ocean me-2 filter-btn" data-habitat="Mangroove">Mangroove</button>
+    <button class="btn btn-ocean" data-habitat="Coral Reef">Coral Reef</button>
+  </div>
+
 
   <!-- LEADERBOARD SECTION -->
   <section class="container my-5">
@@ -76,22 +89,71 @@
   </section>
 
   <!-- Footer -->
-    <footer class="bg-primary text-white text-center py-4 mt-5">
-        <div class="container">
-            <p class="mb-1">© 2025 Krispy Anchovies. All rights reserved.</p>
-            <small>Follow us on
-                <a href="#" class="text-white text-decoration-none">Instagram</a> |
-                <a href="#" class="text-white text-decoration-none">Facebook</a>
-            </small>
-        </div>
-    </footer>
+  <footer class="bg-primary text-white text-center py-4 mt-5">
+    <div class="container">
+      <p class="mb-1">© 2025 Krispy Anchovies. All rights reserved.</p>
+      <small>Follow us on
+        <a href="#" class="text-white text-decoration-none">Instagram</a> |
+        <a href="#" class="text-white text-decoration-none">Facebook</a>
+      </small>
+    </div>
+  </footer>
 
   <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Leaderboard Logic -->
-  <script src="js/firebase-Config.js"></script>
+  <script type="module">
+    import { getTop5ByHabitat } from "./js/firebase-Config.js";
+
+    const tbody = document.getElementById("leaderboardTableBody");
+
+    async function loadLeaderboard(habitat) {
+      tbody.innerHTML = "<tr><td colspan='3'>Loading...</td></tr>";
+
+      let data = [];
+
+      if (habitat === "all") {
+        // Fetch top 5 from all habitats
+        const habitats = ["Ocean", "Arctic", "Mangroove", "Coral Reef"];
+        for (const h of habitats) {
+          const top = await getTop5ByHabitat(h);
+          data = data.concat(top);
+        }
+        // Sort combined data
+        data.sort((a, b) => a.timeTaken - b.timeTaken);
+        data = data.slice(0, 5);
+      } else {
+        data = await getTop5ByHabitat(habitat);
+      }
+
+      if (data.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='3'>No data yet.</td></tr>";
+        return;
+      }
+
+      tbody.innerHTML = "";
+      let rank = 1;
+      data.forEach(player => {
+        tbody.innerHTML += `
+      <tr>
+        <td>${rank++}</td>
+        <td>${player.username}</td>
+        <td>${player.animal} — ${player.timeTaken} sec</td>
+      </tr>
+    `;
+      });
+    }
+
+    // Buttons
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.onclick = () => loadLeaderboard(btn.dataset.habitat);
+    });
+
+    // Default
+    loadLeaderboard("Ocean");
+  </script>
+
 
 </body>
 
