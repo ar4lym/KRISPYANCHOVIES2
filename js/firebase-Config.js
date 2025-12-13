@@ -112,6 +112,7 @@ if (signupForm) {
       const playerData = {
         username,
         email,
+        password,
         habitats: {}
       };
 
