@@ -1,9 +1,22 @@
+/**
+ * ======================================================
+ * Firebase SDK Imports
+ * ======================================================
+ * - App initialization
+ * - Authentication
+ * - Realtime Database
+ */
 // Import Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
 
-// Firebase config
+/**
+ * ======================================================
+ * Firebase Configuration
+ * ======================================================
+ * Contains project-specific Firebase credentials
+ */
 export const firebaseConfig = {
   apiKey: "AIzaSyC8ul32MS9avOm_W5yDcqh07J-T9d2Y0tw",
   authDomain: "itdxdda-asg1.firebaseapp.com",
@@ -15,15 +28,21 @@ export const firebaseConfig = {
   measurementId: "G-PKKVJ22GQX"
 };
 
-// Initialize Firebase
+/**
+ * ======================================================
+ * Firebase Initialization
+ * ======================================================
+ */
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getDatabase(app);
 
-// ======================================================
-// SIGN UP
-// ======================================================
-
+/**
+ * ======================================================
+ * Habitat & Animal Definitions
+ * ======================================================
+ * Used to generate player progress structure
+ */
 const habitatAnimals = {
   "Ocean": ["Jellyfish", "Sunfish"],
   "Arctic": ["Penguin", "Polarbear"],
@@ -31,7 +50,12 @@ const habitatAnimals = {
   "Coral Reef": ["Clownfish", "Mantaray"]
 };
 
-// LOGIN FORM
+/**
+ * ======================================================
+ * LOGIN HANDLER
+ * ======================================================
+ * Authenticates user and loads player data
+ */
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {
   loginForm.addEventListener("submit", async (e) => {
@@ -64,7 +88,12 @@ if (loginForm) {
   });
 }
 
-// SIGNUP FORM
+/**
+ * ======================================================
+ * SIGN-UP HANDLER
+ * ======================================================
+ * Creates a new user and initializes habitat data
+ */
 const signupForm = document.getElementById("signupForm");
 if (signupForm) {
   signupForm.addEventListener("submit", async (e) => {
@@ -78,10 +107,11 @@ if (signupForm) {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const uid = userCredential.user.uid;
 
+      localStorage.setItem("uid", uid);
+
       const playerData = {
         username,
         email,
-        password,
         habitats: {}
       };
 
@@ -105,9 +135,13 @@ if (signupForm) {
   });
 }
 
-// ======================================================
-// 🔥 LEADERBOARD RETRIEVAL LOGIC
-// ======================================================
+/**
+ * ======================================================
+ * Get Top 5 Players by Habitat
+ * ======================================================
+ * @param {string} habitatName - Habitat to rank
+ * @returns {Promise<Array>}
+ */
 export async function getTop5ByHabitat(habitatName) {
   const playersRef = ref(db, "players");
   const snapshot = await get(playersRef);
@@ -148,6 +182,12 @@ export async function getTop5ByHabitat(habitatName) {
 
   return results.slice(0, 5);
 }
+
+/**
+ * ======================================================
+ * Pie Chart for homepage dashboard check the total downloads
+ * ======================================================
+ */
 
 let downloadsChart;
 
@@ -196,6 +236,12 @@ document.addEventListener("DOMContentLoaded", () => {
   initDownloadChart();
   loadBestTimesChart();
 });
+
+/**
+ * ======================================================
+ * Bar graph for homepage dashboard to load best time for each habitat
+ * ======================================================
+ */
 
 let habitatChart;
 
@@ -255,13 +301,22 @@ function loadBestTimesChart() {
   });
 }
 
+/**
+ * ======================================================
+ * Display points in real-time on redeem page
+ * ======================================================
+ */
+
 const uid = localStorage.getItem("uid");
 const pointsText = document.getElementById("playerPoints");
 
-if (uid && pointsText) {
+onAuthStateChanged(auth, (user) => {
+  if (!user || !pointsText) return;
+
+  const uid = user.uid;
   const playerRef = ref(db, `players/${uid}`);
 
-  onValue(playerRef, snapshot => {
+  onValue(playerRef, (snapshot) => {
     if (!snapshot.exists()) return;
 
     const player = snapshot.val();
@@ -275,9 +330,13 @@ if (uid && pointsText) {
 
     pointsText.textContent = `${totalPoints} points`;
   });
-
-}
-
+});
+/**
+ * ======================================================
+ * Updates leaderboard based on selected habitat filter real-time
+ * and also shows all timings of the logged-in user
+ * ======================================================
+ */
 const leaderboardBody = document.getElementById("leaderboardTableBody");
 const allTimingsBody = document.getElementById("allTimingsBody");
 
@@ -375,7 +434,6 @@ function loadLeaderboard(selectedHabitat) {
     });
   });
 }
-
 
 // Filter buttons
 document.querySelectorAll(".filter-btn").forEach(btn => {
