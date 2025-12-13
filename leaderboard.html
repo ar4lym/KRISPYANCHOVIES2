@@ -54,7 +54,7 @@
     <button class="btn btn-ocean me-2 filter-btn" data-habitat="Ocean">Ocean</button>
     <button class="btn btn-ocean me-2 filter-btn" data-habitat="Arctic">Arctic</button>
     <button class="btn btn-ocean me-2 filter-btn" data-habitat="Mangroove">Mangroove</button>
-    <button class="btn btn-ocean" data-habitat="Coral Reef">Coral Reef</button>
+    <button class="btn btn-ocean me-2 filter-btn" data-habitat="Coral Reef">Coral Reef</button>
   </div>
 
 
@@ -74,7 +74,8 @@
                 <tr>
                   <th>Rank</th>
                   <th>Name</th>
-                  <th>Score</th>
+                  <th>Animal</th>
+                  <th>Time (sec)</th>
                 </tr>
               </thead>
               <tbody id="leaderboardTableBody">
@@ -87,6 +88,35 @@
       </div>
     </div>
   </section>
+  <section class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+
+        <div class="card shadow rounded-4">
+          <div class="card-header bg-secondary text-white text-center">
+            <h4 class="mb-0">Your Timings</h4>
+          </div>
+
+          <div class="card-body">
+            <table class="table table-sm table-striped text-center">
+              <thead class="table-secondary">
+                <tr>
+                  <th>Username</th>
+                  <th>Habitat</th>
+                  <th>Animal</th>
+                  <th>Time (sec)</th>
+                </tr>
+              </thead>
+              <tbody id="allTimingsBody"></tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 
   <!-- Footer -->
   <footer class="bg-primary text-white text-center py-4 mt-5">
@@ -102,58 +132,9 @@
   <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
   <script type="module">
-    import { getTop5ByHabitat } from "./js/firebase-Config.js";
-
-    const tbody = document.getElementById("leaderboardTableBody");
-
-    async function loadLeaderboard(habitat) {
-      tbody.innerHTML = "<tr><td colspan='3'>Loading...</td></tr>";
-
-      let data = [];
-
-      if (habitat === "all") {
-        // Fetch top 5 from all habitats
-        const habitats = ["Ocean", "Arctic", "Mangroove", "Coral Reef"];
-        for (const h of habitats) {
-          const top = await getTop5ByHabitat(h);
-          data = data.concat(top);
-        }
-        // Sort combined data
-        data.sort((a, b) => a.timeTaken - b.timeTaken);
-        data = data.slice(0, 5);
-      } else {
-        data = await getTop5ByHabitat(habitat);
-      }
-
-      if (data.length === 0) {
-        tbody.innerHTML = "<tr><td colspan='3'>No data yet.</td></tr>";
-        return;
-      }
-
-      tbody.innerHTML = "";
-      let rank = 1;
-      data.forEach(player => {
-        tbody.innerHTML += `
-      <tr>
-        <td>${rank++}</td>
-        <td>${player.username}</td>
-        <td>${player.animal} — ${player.timeTaken} sec</td>
-      </tr>
-    `;
-      });
-    }
-
-    // Buttons
-    document.querySelectorAll(".filter-btn").forEach(btn => {
-      btn.onclick = () => loadLeaderboard(btn.dataset.habitat);
-    });
-
-    // Default
-    loadLeaderboard("Ocean");
+    import { firebaseConfig } from "./js/firebase-Config.js";
   </script>
-
 
 </body>
 

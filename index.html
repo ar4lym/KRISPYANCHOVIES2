@@ -46,17 +46,29 @@
     </header>
 
     <section class="container my-5">
-        <h2 class="text-primary fw-bold mb-4 text-center">App Downloads Dashboard</h2>
+        <div class="row g-4 justify-content-center">
 
-        <div class="d-flex justify-content-center">
-            <div class="card shadow-sm p-4" style="width: 300px;">
-                <h5 class="text-center mb-3">Totals</h5>
-                <p id="totalsText" class="text-center text-muted mb-3">Loading total users and downloads...</p>
-                <canvas id="downloadsChart" width="250" height="250"></canvas>
+            <!-- TOTAL DOWNLOADS -->
+            <div class="col-md-5">
+                <div class="card shadow rounded-4 text-center p-3">
+                    <h5 class="fw-bold text-primary mb-3">Total Downloads</h5>
+                    <div style="width: 150px; height: 240px; margin: auto; display: flex; justify-content: center; align-items: center;">
+                        <canvas id="downloadsChart"></canvas>
+                    </div>
+                    <h3 id="totalsText" class="fw-bold mt-3"></h3>
+                </div>
             </div>
+
+            <!-- BEST TIME PER HABITAT -->
+            <div class="col-md-6">
+                <div class="card shadow rounded-4 text-center p-3">
+                    <h5 class="fw-bold text-primary mb-3">Best Cleanup Time per Habitat</h5>
+                    <canvas id="habitatBestChart"></canvas>
+                </div>
+            </div>
+
         </div>
     </section>
-
 
 
     <!-- Explore Section (New) -->
@@ -69,7 +81,7 @@
             <div class="col">
                 <a href="redeem.html" class="text-decoration-none">
                     <div class="card h-100 text-center shadow-sm border-0 p-4 explore-card">
-                        <img src="images/icons/treasure.png" alt="Redeem Icon" width="120" class="mx-auto mb-3">
+                        <img src="images/redeem.png" alt="Redeem Icon" width="120" class="mx-auto mb-3">
                         <h4 class="fw-bold text-primary">Redeem Plushies</h4>
                         <p class="text-muted">Use your points to unlock cute sea-themed plush toys and collectibles.</p>
                         <button class="btn btn-outline-primary mt-2">Go to Redeem</button>
@@ -81,7 +93,7 @@
             <div class="col">
                 <a href="leaderboard.html" class="text-decoration-none">
                     <div class="card h-100 text-center shadow-sm border-0 p-4 explore-card">
-                        <img src="images/icons/trophy.png" alt="Leaderboard Icon" width="120" class="mx-auto mb-3">
+                        <img src="images/trophy.png" alt="Leaderboard Icon" width="120" class="mx-auto mb-3">
                         <h4 class="fw-bold text-primary">Leaderboard</h4>
                         <p class="text-muted">Compete with friends and see who has cleaned the most habitats!</p>
                         <button class="btn btn-outline-primary mt-2">View Leaderboard</button>
@@ -93,7 +105,7 @@
             <div class="col">
                 <a href="aboutus.html" class="text-decoration-none">
                     <div class="card h-100 text-center shadow-sm border-0 p-4 explore-card">
-                        <img src="images/icons/dolphin.png" alt="About Icon" width="120" class="mx-auto mb-3">
+                        <img src="images/dolphin.png" alt="About Icon" width="120" class="mx-auto mb-3">
                         <h4 class="fw-bold text-primary">Learn About Us</h4>
                         <p class="text-muted">Discover our mission to protect marine life and inspire young learners.
                         </p>
@@ -118,71 +130,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyC8ul32MS9avOm_W5yDcqh07J-T9d2Y0tw",
-            authDomain: "itdxdda-asg1.firebaseapp.com",
-            databaseURL: "https://itdxdda-asg1-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "itdxdda-asg1",
-            storageBucket: "itdxdda-asg1.firebasestorage.app",
-            messagingSenderId: "1029195562319",
-            appId: "1:1029195562319:web:58900572288dc8b757993a",
-            measurementId: "G-PKKVJ22GQX"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        const ctx = document.getElementById('downloadsChart').getContext('2d');
-        const totalsText = document.getElementById('totalsText');
-        let downloadsChart;
-
-        const updateChart = (data) => {
-            const totalUsers = Object.keys(data || {}).length;
-            let totalDownloads = 0;
-
-            Object.values(data || {}).forEach(user => {
-                if (user.downloads) totalDownloads += user.downloads;
-            });
-            if (totalDownloads === 0) totalDownloads = totalUsers;
-
-            totalsText.textContent = `Users: ${totalUsers} | Downloads: ${totalDownloads}`;
-
-            const chartData = {
-                labels: ['Users', 'Downloads'],
-                datasets: [{
-                    data: [totalUsers, totalDownloads],
-                    backgroundColor: ['#00b4d8', '#0077b6'],
-                    borderColor: '#fff',
-                    borderWidth: 1
-                }]
-            };
-
-            if (downloadsChart) {
-                downloadsChart.data = chartData;
-                downloadsChart.update();
-            } else {
-                downloadsChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: chartData,
-                    options: {
-                        responsive: false, // Keep it compact
-                        plugins: {
-                            legend: { position: 'bottom' },
-                            tooltip: { enabled: true }
-                        }
-                    }
-                });
-            }
-        };
-
-        const usersRef = ref(db, 'players/');
-        onValue(usersRef, snapshot => {
-            const data = snapshot.val();
-            updateChart(data);
-        });
+        import { firebaseConfig } from "./js/firebase-Config.js";
     </script>
 
 </body>
