@@ -6,27 +6,30 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Leaderboard</title>
 
-  <!-- Bootstrap -->
+  <!-- <summary>Bootstrap CSS for responsive layout and styling</summary> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom CSS -->
+  <!-- <summary>Custom CSS for Krispy Anchovies website</summary> -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body class="bg-light">
 
+  <!-- <summary>Navigation bar with brand logo, page links, and login/signup buttons</summary> -->
   <nav class="navbar navbar-expand-lg navbar-dark ocean-nav shadow-sm">
     <div class="container">
+      <!-- <summary>Brand logo linking to homepage</summary> -->
       <a class="navbar-brand fw-bold" href="index.html">
         <img src="images/logo.png" alt="Krispy Anchovies Logo" width="75" height="75" class="me-2">
         Krispy Anchovies
       </a>
 
-
+      <!-- <summary>Button to toggle navigation menu on smaller screens</summary> -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
 
+      <!-- <summary>Navigation links and login/signup buttons</summary> -->
       <div id="navMenu" class="collapse navbar-collapse">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
@@ -42,32 +45,41 @@
     </div>
   </nav>
 
-  <!-- HERO BANNER -->
+  <!-- <summary>Hero banner displaying page title and description</summary> -->
   <header class="text-center text-white py-5" style="background: linear-gradient(to bottom, #009ffd, #2a2a72);">
+    <!-- <summary>Page headline for leaderboard</summary> -->
     <h1 class="fw-bold">🌊 Live Habitat Cleanup Leaderboard</h1>
+    <!-- <summary>Subheading describing leaderboard purpose</summary> -->
     <p class="lead">See who has contributed the most to restoring marine habitats!</p>
   </header>
 
-  <!-- HABITAT FILTER BUTTONS -->
+  <!-- <summary>Buttons to filter leaderboard by habitat type</summary> -->
   <div class="text-center mb-4">
+    <!-- <summary>Filter button showing all habitats</summary> -->
     <button class="btn btn-ocean me-2 filter-btn" data-habitat="all">All</button>
+    <!-- <summary>Filter button for Ocean habitat</summary> -->
     <button class="btn btn-ocean me-2 filter-btn" data-habitat="Ocean">Ocean</button>
+    <!-- <summary>Filter button for Arctic habitat</summary> -->
     <button class="btn btn-ocean me-2 filter-btn" data-habitat="Arctic">Arctic</button>
+    <!-- <summary>Filter button for Mangroove habitat</summary> -->
     <button class="btn btn-ocean me-2 filter-btn" data-habitat="Mangroove">Mangroove</button>
+    <!-- <summary>Filter button for Coral Reef habitat</summary> -->
     <button class="btn btn-ocean me-2 filter-btn" data-habitat="Coral Reef">Coral Reef</button>
   </div>
 
-
-  <!-- LEADERBOARD SECTION -->
+  <!-- <summary>Leaderboard section displaying top cleaners with rank, name, animal, and time</summary> -->
   <section class="container my-5">
     <div class="row justify-content-center">
       <div class="col-md-7">
 
+        <!-- <summary>Card container for top cleaners leaderboard</summary> -->
         <div class="card shadow-lg rounded-4">
           <div class="card-header bg-primary text-white text-center py-3">
+            <!-- <summary>Leaderboard section title</summary> -->
             <h3 class="mb-0">Top Cleaners</h3>
           </div>
 
+          <!-- <summary>Table displaying top cleaner details, populated dynamically with JavaScript</summary> -->
           <div class="card-body">
             <table class="table table-hover text-center">
               <thead class="table-primary">
@@ -78,6 +90,7 @@
                   <th>Time (sec)</th>
                 </tr>
               </thead>
+              <!-- <summary>Table body where JavaScript will insert leaderboard rows</summary> -->
               <tbody id="leaderboardTableBody">
                 <!-- JavaScript will insert rows here -->
               </tbody>
@@ -88,15 +101,19 @@
       </div>
     </div>
   </section>
+
+  <!-- <summary>Section displaying user's personal timings for habitat cleanups</summary> -->
   <section class="container my-5">
     <div class="row justify-content-center">
       <div class="col-md-10">
 
+        <!-- <summary>Card container for personal timings table</summary> -->
         <div class="card shadow rounded-4">
           <div class="card-header bg-secondary text-white text-center">
             <h4 class="mb-0">Your Timings</h4>
           </div>
 
+          <!-- <summary>Table displaying user's cleanup times with username, habitat, animal, and time</summary> -->
           <div class="card-body">
             <table class="table table-sm table-striped text-center">
               <thead class="table-secondary">
@@ -107,6 +124,7 @@
                   <th>Time (sec)</th>
                 </tr>
               </thead>
+              <!-- <summary>Table body where JavaScript will populate user's timings</summary> -->
               <tbody id="allTimingsBody"></tbody>
             </table>
           </div>
@@ -117,8 +135,7 @@
     </div>
   </section>
 
-
-  <!-- Footer -->
+  <!-- <summary>Footer section containing copyright and social media links</summary> -->
   <footer class="bg-primary text-white text-center py-4 mt-5">
     <div class="container">
       <p class="mb-1">© 2025 Krispy Anchovies. All rights reserved.</p>
@@ -129,7 +146,7 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- <summary>Scripts for jQuery, Bootstrap JS, and Firebase configuration</summary> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script type="module">

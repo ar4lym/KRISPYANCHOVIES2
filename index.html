@@ -5,30 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krispy Anchovies - Home</title>
+
+    <!-- <summary>Bootstrap CSS for responsive layout and styling</summary> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- <summary>Custom styles for Krispy Anchovies website</summary> -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- <summary>Chart.js library for rendering charts</summary> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
+    <!-- <summary>Navigation bar with brand logo, links, and login/signup buttons</summary> -->
     <nav class="navbar navbar-expand-lg navbar-dark ocean-nav shadow-sm">
         <div class="container">
+            <!-- <summary>Brand logo and website name linking to homepage</summary> -->
             <a class="navbar-brand fw-bold" href="index.html">
                 <img src="images/logo.png" alt="Krispy Anchovies Logo" width="75" height="75" class="me-2">
                 Krispy Anchovies
             </a>
 
+            <!-- <summary>Button to toggle mobile menu</summary> -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- <summary>Navigation links and login/signup buttons</summary> -->
             <div id="navMenu" class="collapse navbar-collapse">
                 <ul class="navbar-nav mx-auto">
+                    <!-- <summary>Navigation link to About Us page</summary> -->
                     <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
+                    <!-- <summary>Navigation link to Redeem page</summary> -->
                     <li class="nav-item"><a class="nav-link" href="redeem.html">Redeem</a></li>
+                    <!-- <summary>Navigation link to Leaderboard page</summary> -->
                     <li class="nav-item"><a class="nav-link" href="leaderboard.html">Leaderboard</a></li>
                 </ul>
 
+                <!-- <summary>Login and Sign Up buttons aligned to right</summary> -->
                 <div class="d-flex">
                     <a href="login.html" class="btn btn-outline-light me-2">Log In</a>
                     <a href="signup.html" class="btn btn-light">Sign Up</a>
@@ -37,32 +51,39 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- <summary>Hero section with welcome message, description, and call-to-action button</summary> -->
     <header class="hero-section text-center text-white d-flex flex-column justify-content-center align-items-center"
         style="min-height:70vh; background: linear-gradient(to bottom, #00b4d8, #0077b6);">
+        <!-- <summary>Main headline of the hero section</summary> -->
         <h1 class="display-4 fw-bold mb-3">Welcome to Krispy Anchovies</h1>
+        <!-- <summary>Subheading describing the website purpose</summary> -->
         <p class="lead mb-4">Save sea creatures, earn points, and redeem adorable plush toys!</p>
+        <!-- <summary>Call-to-action button linking to Sign Up page</summary> -->
         <a href="signup.html" class="btn btn-light btn-lg">Get Started</a>
     </header>
 
+    <!-- <summary>Section displaying key statistics with charts for downloads and best cleanup times</summary> -->
     <section class="container my-5">
         <div class="row g-4 justify-content-center">
 
-            <!-- TOTAL DOWNLOADS -->
+            <!-- <summary>Total Downloads Card with chart and numeric display</summary> -->
             <div class="col-md-5">
                 <div class="card shadow rounded-4 text-center p-3">
                     <h5 class="fw-bold text-primary mb-3">Total Downloads</h5>
+                    <!-- <summary>Canvas element for rendering total downloads chart</summary> -->
                     <div style="width: 150px; height: 240px; margin: auto; display: flex; justify-content: center; align-items: center;">
                         <canvas id="downloadsChart"></canvas>
                     </div>
+                    <!-- <summary>Text element to display total downloads count dynamically</summary> -->
                     <h3 id="totalsText" class="fw-bold mt-3"></h3>
                 </div>
             </div>
 
-            <!-- BEST TIME PER HABITAT -->
+            <!-- <summary>Best Cleanup Time per Habitat card with chart</summary> -->
             <div class="col-md-6">
                 <div class="card shadow rounded-4 text-center p-3">
                     <h5 class="fw-bold text-primary mb-3">Best Cleanup Time per Habitat</h5>
+                    <!-- <summary>Canvas element for rendering best time per habitat chart</summary> -->
                     <canvas id="habitatBestChart"></canvas>
                 </div>
             </div>
@@ -70,14 +91,12 @@
         </div>
     </section>
 
-
-    <!-- Explore Section (New) -->
+    <!-- <summary>Explore section with interactive cards linking to Redeem, Leaderboard, and About Us</summary> -->
     <section class="container my-5">
         <h2 class="text-center mb-5 text-primary fw-bold">Explore the Experience</h2>
-
         <div class="row row-cols-1 row-cols-md-3 g-4">
 
-            <!-- Redeem Portal -->
+            <!-- <summary>Redeem plushies card with image, description, and button</summary> -->
             <div class="col">
                 <a href="redeem.html" class="text-decoration-none">
                     <div class="card h-100 text-center shadow-sm border-0 p-4 explore-card">
@@ -89,7 +108,7 @@
                 </a>
             </div>
 
-            <!-- Leaderboard Portal -->
+            <!-- <summary>Leaderboard card showing competition stats with image and button</summary> -->
             <div class="col">
                 <a href="leaderboard.html" class="text-decoration-none">
                     <div class="card h-100 text-center shadow-sm border-0 p-4 explore-card">
@@ -101,14 +120,13 @@
                 </a>
             </div>
 
-            <!-- Learn / About Portal -->
+            <!-- <summary>About Us card linking to Learn More with image and description</summary> -->
             <div class="col">
                 <a href="aboutus.html" class="text-decoration-none">
                     <div class="card h-100 text-center shadow-sm border-0 p-4 explore-card">
                         <img src="images/dolphin.png" alt="About Icon" width="120" class="mx-auto mb-3">
                         <h4 class="fw-bold text-primary">Learn About Us</h4>
-                        <p class="text-muted">Discover our mission to protect marine life and inspire young learners.
-                        </p>
+                        <p class="text-muted">Discover our mission to protect marine life and inspire young learners.</p>
                         <button class="btn btn-outline-primary mt-2">Learn More</button>
                     </div>
                 </a>
@@ -117,7 +135,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- <summary>Footer section with copyright and social media links</summary> -->
     <footer class="bg-primary text-white text-center py-4 mt-5">
         <div class="container">
             <p class="mb-1">© 2025 Krispy Anchovies. All rights reserved.</p>
@@ -128,7 +146,10 @@
         </div>
     </footer>
 
+    <!-- <summary>Bootstrap JS bundle for interactive components like navbar toggle</summary> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- <summary>Import Firebase configuration for connecting to Firebase services</summary> -->
     <script type="module">
         import { firebaseConfig } from "./js/firebase-Config.js";
     </script>

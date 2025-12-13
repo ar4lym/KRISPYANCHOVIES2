@@ -5,23 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krispy Anchovies - Home</title>
+
+    <!-- <summary>Bootstrap CSS for responsive layout and styling</summary> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- <summary>Custom CSS for Krispy Anchovies Redeem page</summary> -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
+
+    <!-- <summary>Navigation bar with brand logo, page links, and login/signup buttons</summary> -->
     <nav class="navbar navbar-expand-lg navbar-dark ocean-nav shadow-sm">
         <div class="container">
+            <!-- <summary>Brand logo linking to homepage</summary> -->
             <a class="navbar-brand fw-bold" href="index.html">
                 <img src="images/logo.png" alt="Krispy Anchovies Logo" width="75" height="75" class="me-2">
                 Krispy Anchovies
             </a>
 
-
+            <!-- <summary>Button to toggle navigation menu on small screens</summary> -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- <summary>Navigation links and login/signup buttons</summary> -->
             <div id="navMenu" class="collapse navbar-collapse">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
@@ -37,8 +45,7 @@
         </div>
     </nav>
 
-
-    <!-- Hero Section -->
+    <!-- <summary>Hero section introducing the redeem page</summary> -->
     <header class="hero-section text-center text-white d-flex flex-column justify-content-center align-items-center"
         style="min-height:70vh; background: linear-gradient(to bottom, #00b4d8, #0077b6);">
         <h1 class="display-4 fw-bold mb-3">About Us</h1>
@@ -46,19 +53,22 @@
         <a href="signup.html" class="btn btn-light btn-lg">Get Started</a>
     </header>
 
+    <!-- <summary>Display player's current points dynamically</summary> -->
     <div class="d-flex justify-content-center my-5">
         <div class="px-5 py-4 text-center rounded-4 shadow"
             style="background: linear-gradient(135deg, #00b4d8, #0077b6); color: white;">
             <h1 class="mb-1 fs-5">Your Points:</h1>
+            <!-- <summary>Dynamic element showing player's current points</summary> -->
             <p id="playerPoints" class="fw-bold display-4 mb-0">0</p>
         </div>
     </div>
 
-    <!-- Featured Items / Redeemable Section -->
+    <!-- <summary>Featured items that players can redeem with their points</summary> -->
     <section class="container my-5">
         <h2 class="text-center mb-4 text-primary">Featured Items</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <!-- Crab Card -->
+
+            <!-- <summary>Crab Plush Card</summary> -->
             <div class="col">
                 <div class="card shadow-sm h-100 border-0">
                     <img src="images/Ocean/Crab.png" class="card-img-top" alt="Crab Plush"
@@ -67,12 +77,13 @@
                         <h5 class="card-title">Crab</h5>
                         <p class="card-text">OCEAN Plush Toy - 10 x 10 cm</p>
                         <p class="fw-bold">25 Points</p>
+                        <!-- <summary>Button to redeem this item using player's points</summary> -->
                         <button class="btn btn-outline-primary w-100">Redeem</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Penguin Card -->
+            <!-- <summary>Penguin KeyChain Card</summary> -->
             <div class="col">
                 <div class="card shadow-sm h-100 border-0">
                     <img src="images/Artic/Penguin_Front.png" class="card-img-top" alt="Penguin KeyChain"
@@ -86,7 +97,7 @@
                 </div>
             </div>
 
-            <!-- Crocodile Card -->
+            <!-- <summary>Crocodile Plush Card</summary> -->
             <div class="col">
                 <div class="card shadow-sm h-100 border-0">
                     <img src="images/Mangroove/Crocodile.png" class="card-img-top" alt="Crocodile Plush"
@@ -99,10 +110,11 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- <summary>Footer section containing copyright and social media links</summary> -->
     <footer class="bg-primary text-white text-center py-4 mt-5">
         <div class="container">
             <p class="mb-1">© 2025 Krispy Anchovies. All rights reserved.</p>
@@ -113,7 +125,10 @@
         </div>
     </footer>
 
+    <!-- <summary>Bootstrap JS bundle for responsive behavior</summary> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- <summary>JavaScript module importing Firebase configuration for user points and redemption</summary> -->
     <script type="module">
         import { firebaseConfig } from "./js/firebase-Config.js";
     </script>

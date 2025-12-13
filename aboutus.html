@@ -5,24 +5,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Krispy Anchovies</title>
+
+    <!-- <summary>Bootstrap CSS for responsive layout and styling</summary> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- <summary>Custom CSS styles for Krispy Anchovies website</summary> -->
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body class="bg-light">
 
-    <!-- Navbar -->
+    <!-- <summary>Navigation bar with logo, page links, and login/signup buttons</summary> -->
     <nav class="navbar navbar-expand-lg navbar-dark ocean-nav shadow-sm">
         <div class="container">
+            <!-- <summary>Brand logo and website name linking to homepage</summary> -->
             <a class="navbar-brand fw-bold" href="index.html">
                 <img src="images/logo.png" alt="Krispy Anchovies Logo" width="75" height="75" class="me-2">
                 Krispy Anchovies
             </a>
 
+            <!-- <summary>Toggle button for mobile navigation menu</summary> -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- <summary>Navigation links to About Us, Redeem, and Leaderboard pages, with login/signup buttons</summary> -->
             <div id="navMenu" class="collapse navbar-collapse">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link active" href="aboutus.html">About Us</a></li>
@@ -38,36 +45,44 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION WITH IMAGE -->
+    <!-- <summary>Hero section with background image, headline, description, and call-to-action button</summary> -->
     <header class="landing-hero text-white d-flex align-items-center" 
             style="background: url('images/hero-ocean.jpg') center center / cover no-repeat; height: 60vh;">
         <div class="container text-center">
+            <!-- <summary>Main headline encouraging users to protect sea creatures</summary> -->
             <h1 class="display-3 fw-bold">Protect SEA Creatures</h1>
+            <!-- <summary>Subheading describing the purpose of the website</summary> -->
             <p class="lead mt-3">Join the movement to clean our oceans and restore marine habitats.</p>
+            <!-- <summary>Call-to-action button linking to Sign Up page</summary> -->
             <a href="signup.html" class="btn btn-lg btn-light mt-3 fw-semibold">Start Helping</a>
         </div>
     </header>
 
-    <!-- SECTION: Featured Articles -->
+    <!-- <summary>Section displaying featured environmental news articles with cards</summary> -->
     <div class="container my-5">
         <h2 class="text-center mb-4 fw-bold text-primary">Latest Environmental News</h2>
         <div class="row g-4">
 
-            <!-- Arctic Card -->
+            <!-- <summary>Arctic news card featuring polar bears and plastic pollution</summary> -->
             <div class="col-md-6">
                 <div class="card shadow-sm border-0 h-100">
+                    <!-- <summary>Image of polar bear in Arctic environment</summary> -->
                     <img src="images/Artic/Penguin_Front.png" class="card-img-top" style="height:260px; object-fit:cover;">
                     <div class="card-body">
+                        <!-- <summary>Badge indicating region: Arctic</summary> -->
                         <span class="badge bg-primary">ARCTIC</span>
+                        <!-- <summary>Article headline</summary> -->
                         <h3 class="mt-2">Plastic Pollution Hits Polar Bears</h3>
+                        <!-- <summary>Brief description of the article</summary> -->
                         <p class="text-muted">Polar bears struggle in a plastic-filled Arctic environment.</p>
+                        <!-- <summary>Button linking to full article in a new tab</summary> -->
                         <a href="https://www.greenpeace.org/aotearoa/story/polar-bears-exposed-to-plastic-pollution-in-their-arctic-home/" 
                            target="_blank" class="btn btn-outline-primary">Read Article →</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Ocean Card -->
+            <!-- <summary>Ocean news card highlighting ocean trash problem</summary> -->
             <div class="col-md-6">
                 <div class="card shadow-sm border-0 h-100">
                     <img src="images/Ocean/Crab.png" class="card-img-top" style="height:260px; object-fit:cover;">
@@ -81,7 +96,7 @@
                 </div>
             </div>
 
-            <!-- Mangroove Card -->
+            <!-- <summary>Mangrove news card describing habitat threats</summary> -->
             <div class="col-md-6">
                 <div class="card shadow-sm border-0 h-100">
                     <img src="images/Mangroove/Crocodile.png" class="card-img-top" style="height:260px; object-fit:cover;">
@@ -95,7 +110,7 @@
                 </div>
             </div>
 
-            <!-- Coral Reef Card -->
+            <!-- <summary>Coral Reef news card describing bleaching crisis</summary> -->
             <div class="col-md-6">
                 <div class="card shadow-sm border-0 h-100">
                     <img src="images/Coral Reef/Mantaray.jpg" class="card-img-top" style="height:260px; object-fit:cover;">
@@ -112,7 +127,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- <summary>Footer section containing copyright info and social media links</summary> -->
     <footer class="bg-primary text-white text-center py-4 mt-5">
         <div class="container">
             <p class="mb-1">© 2025 Krispy Anchovies. All rights reserved.</p>
@@ -123,6 +138,7 @@
         </div>
     </footer>
 
+    <!-- <summary>Bootstrap JS bundle for navbar toggle and other components</summary> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
