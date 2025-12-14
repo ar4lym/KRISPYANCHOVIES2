@@ -1,6 +1,17 @@
 # Krispy Anchovies
 Krispy Anchovies is an e-commerce company with a mission to make a positive impact on marine wildlife conservation. Specializing in aquatic animal-themed plushies, we aim to combine comfort and care for the environment. Each purchase contributes to initiatives focused on protecting and preserving marine ecosystems. By choosing one of our plushies, customers not only gain a soft, lovable companion but also become active participants in the effort to save ocean wildlife. Together, we are driving meaningful change, one plushie at a time.
 
+# Application Purpose & Target Audience
+- **What the application caters for:**  
+  - Environmentally conscious shoppers 
+  - Students and young users interested in marine conservation
+  - Casual e-commerce users who enjoy gamified rewards systems
+- **Primary Goals:**  
+  - Promote awareness of marine conservation 
+  - Encourage user engagement through points, leaderboards, and rewards 
+  -Provide a simple, responsive, and user-friendly shopping experience
+
+
 # Design Process
 The website was designed to be visually appealing, responsive, and user-friendly. Each page was developed with a clear purpose and smooth navigation in mind:
 
